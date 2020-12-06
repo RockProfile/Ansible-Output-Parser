@@ -1,0 +1,41 @@
+
+PLAY [Repository Configurations] ***********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible]
+ok: [worker-01]
+ok: [master]
+ok: [worker-03]
+ok: [worker-02]
+fatal: [worker-04]: UNREACHABLE! => {"changed": false, "msg": "Invalid/incorrect password: Permission denied, please try again.", "unreachable": true}
+ok: [worker-06]
+ok: [worker-05]
+
+TASK [Copy pip configuration file] *********************************************
+ok: [ansible]
+ok: [worker-01]
+ok: [master]
+ok: [worker-03]
+ok: [worker-02]
+ok: [worker-05]
+ok: [worker-06]
+
+TASK [Copy Docker configuration file] ******************************************
+ok: [ansible]
+ok: [worker-01]
+ok: [worker-03]
+ok: [master]
+ok: [worker-02]
+ok: [worker-05]
+ok: [worker-06]
+
+PLAY RECAP *********************************************************************
+ansible                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+master                     : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+worker-01                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+worker-02                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+worker-03                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+worker-04                  : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0
+worker-05                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+worker-06                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+

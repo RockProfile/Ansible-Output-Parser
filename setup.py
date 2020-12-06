@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import find_packages, setup
 
 PACKAGE_NAME = 'Anislbe Output Parser'
 PACKAGE_VERSION = '0.0.1'
@@ -32,6 +32,8 @@ setup(
     long_description=LONG_DESCRIPTION,
     long_description_content_type='',
     keywords='ansible',
+    packages=find_packages(),
+    package_dir={'ansible_parser': 'ansible_parser'},
     platforms='',
     provides='',
     requires='',

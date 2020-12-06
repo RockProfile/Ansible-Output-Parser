@@ -1,0 +1,57 @@
+
+PLAY [Certificate Distribution] ************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [cicd.devfaq.com]
+ok: [alpha.rockprofile.com]
+ok: [dev.rockprofile.com]
+
+PLAY RECAP *********************************************************************
+alpha.rockprofile.com      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+cicd.devfaq.com            : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+dev.rockprofile.com        : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+PLAY [127.0.0.1] ***************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [127.0.0.1]
+
+TASK [certificate : Create store directory] ************************************
+ok: [127.0.0.1]
+
+TASK [Check if ~/certificates/letsencrypt.key already exists.] *****************
+ok: [127.0.0.1]
+
+TASK [certificate : Create account token.] *************************************
+changed: [127.0.0.1]
+
+TASK [certificate : Create csr for *.devfaq.com.] ******************************
+changed: [127.0.0.1]
+
+TASK [certificate : Create a challenge for *.devfaq.com using an account key file.] ***
+ok: [127.0.0.1]
+
+TASK [Delete old DNS record ({{ certificate_challenge.challenge_data[common_name]['dns-01'].record }}).] ***
+skipping: [127.0.0.1]
+
+TASK [Delete old DNS record ({{ certificate_challenge.challenge_data[common_name]['dns-01'].record }}.{{ domain }}).] ***
+skipping: [127.0.0.1]
+
+TASK [Create new DNS record ({{ certificate_challenge.challenge_data[common_name]['dns-01'].record }}).] ***
+skipping: [127.0.0.1]
+
+TASK [Create new DNS record ({{ certificate_challenge.challenge_data[common_name]['dns-01'].record }}.{{ domain }}).] ***
+skipping: [127.0.0.1]
+
+TASK [certificate : Create a challenge for *.devfaq.com using an account key file.] ***
+skipping: [127.0.0.1]
+
+TASK [Delete CSR ~/certificates/devfaq.com.csr] ********************************
+changed: [127.0.0.1]
+
+PLAY RECAP *********************************************************************
+127.0.0.1                  : ok=7    changed=3    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0
+alpha.rockprofile.com      : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+cicd.devfaq.com            : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+dev.rockprofile.com        : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
