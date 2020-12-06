@@ -1,0 +1,19 @@
+image: 192.168.0.5:8086/python-cicd
+
+before_script:
+  - pip install virtualenv
+  - virtualenv venv
+  - source venv/bin/activate
+  - pip install -e .[test]
+
+Linting:
+  script:
+    - flake8 ansible_parser
+
+Type-Checking:
+  script:
+    - mypy ansible_parser
+
+Pytest:
+  script:
+    - pytest
