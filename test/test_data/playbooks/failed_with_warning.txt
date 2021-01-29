@@ -1,0 +1,13 @@
+[WARNING]: Found both group and host with same name: test
+
+PLAY [Update Ansible.] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [127.0.0.1]
+
+TASK [Clone Ansible repository.] ***********************************************
+fatal: [127.0.0.1]: FAILED! => {"changed": false, "cmd": ["/usr/bin/git", "fetch", "--tags", "--force", "origin"], "msg": "Failed to download remote objects and refs:  Host key verification failed.\r\nfatal: Could not read from remote repository.\n\nPlease make sure you have the correct access rights\nand the repository exists.\n"}
+
+PLAY RECAP *********************************************************************
+127.0.0.1                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+

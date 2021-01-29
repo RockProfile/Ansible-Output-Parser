@@ -2,11 +2,11 @@ import re
 
 from typing import Dict, List
 
-from ansible_parser.task import Tasks
+from ansible_parser.tasks import Tasks
 
 
 class Play:
-    __slots__ = ['_plays', '_current_play', '_recap']
+    __slots__ = ['_plays', '_current_play', '_recap', '_warnings']
 
     def __init__(self, play_output: str):
         """
@@ -14,8 +14,18 @@ class Play:
 
         :param play_output: The output from Ansible after running commands.
         """
+        self._warnings: List[str] = list()
         self._plays: Dict[str, Dict[str, Tasks]] = {}
+        self._process_warnings(play_output)
         self._process_play(play_output)
+
+    def _process_warnings(self, play_output: str):
+        """
+        Process any warnings showing in the output.
+
+        :param play_output:
+        """
+        self._warnings = re.findall(r'\[WARNING]: (.+)', play_output, re.IGNORECASE)
 
     def _process_play(self, play_output: str):
         """

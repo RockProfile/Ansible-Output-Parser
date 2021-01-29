@@ -1,0 +1,9 @@
+TASK [Gathering Facts] *********************************************************
+ok: [ansible]
+ok: [worker-01]
+ok: [master]
+ok: [worker-03]
+ok: [worker-02]
+fatal: [worker-04]: UNREACHABLE! => {"changed": false, "msg": "Invalid/incorrect password: Permission denied, please try again.", "unreachable": true}
+ok: [worker-06]
+ok: [worker-05]
