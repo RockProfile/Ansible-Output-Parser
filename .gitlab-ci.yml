@@ -1,0 +1,19 @@
+image: 192.168.0.5:8086/python-cicd
+
+before_script:
+  - pip install virtualenv
+  - virtualenv /tmp/venv
+  - source /tmp/venv/bin/activate
+  - pip install .[test]
+
+Linting:
+  script:
+    - flake8
+
+Type-Checking:
+  script:
+    - mypy .
+
+Pytest:
+  script:
+    - pytest

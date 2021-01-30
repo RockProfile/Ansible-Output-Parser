@@ -1,0 +1,31 @@
+[WARNING]: Found both group and host with same name: test
+
+PLAY [Setup Ansible.] **********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [127.0.0.1]
+
+TASK [Update Ansible.] *********************************************************
+ok: [127.0.0.1]
+
+TASK [Setup Ansible cron.] *****************************************************
+ok: [127.0.0.1]
+
+TASK [Setup Ansible Daily Maintananace.] ***************************************
+ok: [127.0.0.1]
+
+TASK [Setup Ansible Local Repo Configuration.] *********************************
+ok: [127.0.0.1]
+
+TASK [Setup Ansible Certificate Renewals.] *************************************
+ok: [127.0.0.1]
+
+TASK [Setup Ansible Certificate Distribution.] *********************************
+ok: [127.0.0.1]
+
+TASK [Fetch Ansible requirements.] *********************************************
+changed: [127.0.0.1]
+
+PLAY RECAP *********************************************************************
+127.0.0.1                  : ok=8    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
