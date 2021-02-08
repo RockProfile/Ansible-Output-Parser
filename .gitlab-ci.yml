@@ -30,8 +30,11 @@ Upload:
   script:
     - mkdir dist/
     - python setup.py bdist_wheel
+    - export TWINE_REPOSITORY_URL=$NEXUS_PIP_URL
     - export TWINE_NON_INTERACTIVE=1
-    - twine upload -r $NEXUS_PIP_URL -u $NEXUS_USERNAME -p $NEXUS_PASSWORD dist/*
-  #only:
-  #  refs:
-  #    - master
+    - export TWINE_PASSWORD=$NEXUS_PASSWORD
+    - export TWINE_USERNAME=$NEXUS_USERNAME
+    - twine upload dist/*
+  only:
+    refs:
+      - master
