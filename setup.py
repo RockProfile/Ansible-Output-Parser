@@ -10,6 +10,7 @@ TEST_REQUIRES = [
     'flake8',
     'mypy',
     'pytest',
+    'twine',
     'wheel',
 ]
 

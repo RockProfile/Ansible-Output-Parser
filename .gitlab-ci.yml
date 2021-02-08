@@ -1,5 +1,9 @@
 image: 192.168.0.5:8086/python-cicd
 
+stages:
+  - test
+  - deploy
+
 before_script:
   - pip install virtualenv
   - virtualenv /tmp/venv
@@ -7,13 +11,30 @@ before_script:
   - pip install .[test]
 
 Linting:
+  stage: test
   script:
     - flake8
 
 Type-Checking:
+  stage: test
   script:
     - mypy .
 
 Pytest:
+  stage: test
   script:
     - pytest
+
+Upload:
+  stage: deploy
+  script:
+    - mkdir dist/
+    - python setup.py bdist_wheel
+    - export TWINE_NON_INTERACTIVE=1
+    - export TWINE_REPOSITORY="$NEXUS_PIP_URL"
+    - export TWINE_USERNAME="$NEXUS_USERNAME"
+    - export TWINE_PASSWORD="$NEXUS_PASSWORD"
+    - twine upload dist/*
+  #only:
+  #  refs:
+  #    - master
