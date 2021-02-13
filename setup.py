@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 PACKAGE_NAME = 'Anislbe Output Parser'
-PACKAGE_VERSION = '0.0.1'
+PACKAGE_VERSION = '0.0.2'
 DESCRIPTION = 'Parser for Ansible output'
 with open('README.md', 'r') as fileHandler:
     LONG_DESCRIPTION = fileHandler.read()
@@ -10,6 +10,7 @@ TEST_REQUIRES = [
     'flake8',
     'mypy',
     'pytest',
+    'twine',
     'wheel',
 ]
 
