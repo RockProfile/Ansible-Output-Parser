@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-PACKAGE_NAME = 'Anisble Output Parser'
+PACKAGE_NAME = 'Ansible Output Parser'
 PACKAGE_VERSION = '0.0.2'
 DESCRIPTION = 'Parser for Ansible output'
 with open('README.md', 'r') as fileHandler:
