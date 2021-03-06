@@ -37,7 +37,6 @@ setup(
     packages=find_packages(),
     package_dir={'ansible_parser': 'ansible_parser'},
     platforms='',
-    provides='ansible_parser',
     install_requires=INSTALL_REQUIRES,
     setup_requires=SETUP_REQUIRES,
     extras_require={'test': TEST_REQUIRES},
