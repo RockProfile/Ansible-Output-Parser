@@ -28,7 +28,6 @@ setup(
     classifiers='',
     license='MIT',
     license_file='LICENSE',
-    license_files='LICENSE',
     description=DESCRIPTION,
     long_description=LONG_DESCRIPTION,
     long_description_content_type='',

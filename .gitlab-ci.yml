@@ -25,7 +25,7 @@ Pytest:
   script:
     - pytest
 
-Upload:
+Nexus_Upload:
   stage: deploy
   script:
     - mkdir dist/
@@ -38,3 +38,12 @@ Upload:
   only:
     refs:
       - master
+
+PyPi_Upload:
+  stage: deploy
+  script:
+    - mkdir dist/
+    - python setup.py bdist_wheel
+    - export TWINE_PASSWORD=$PYPI_PASSWORD
+    - export TWINE_USERNAME=$PYPI_USERNAME
+    - twine upload dist/*
