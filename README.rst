@@ -3,7 +3,7 @@ Ansible Parser
 
 The Ansible Parser is intended to parse the output that Ansible returns.
 
-Istallation
+Installation
 ------------
 
 Simply install using:
