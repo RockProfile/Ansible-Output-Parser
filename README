@@ -1,0 +1,20 @@
+# Ansible Parser
+
+Ansible Parser, as the name suggests parses the output from Ansible.
+
+## Installation
+
+Simply install using:
+
+```sh
+pip install ansible-output-parser
+```
+
+## Usage
+
+```python
+from ansible_parser.play import Play
+play = "" # populate with play output
+ansible = Play(play_output=play)
+failures = ansible.failures()
+```
