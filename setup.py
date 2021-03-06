@@ -23,7 +23,7 @@ setup(
     author_email='admin@rockprofile.com',
     maintainer='Peter McDonald',
     maintainer_email='admin@rockprofile.com',
-    classifiers='Development Status :: 4 - Beta',
+    classifiers=['Development Status :: 4 - Beta'],
     license='MIT',
     license_file='LICENSE',
     description=DESCRIPTION,
