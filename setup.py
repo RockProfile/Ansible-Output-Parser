@@ -1,10 +1,14 @@
 from setuptools import find_packages, setup
+from typing import List
 
 PACKAGE_NAME = 'ansible-output-parser'
 PACKAGE_VERSION = '0.0.4'
 DESCRIPTION = 'Parser for Ansible output'
 with open('README.rst', 'r') as fileHandler:
     LONG_DESCRIPTION = fileHandler.read()
+
+INSTALL_REQUIRES: List[str] = []
+SETUP_REQUIRES: List[str] = []
 
 TEST_REQUIRES = [
     'flake8',
@@ -34,5 +38,7 @@ setup(
     package_dir={'ansible_parser': 'ansible_parser'},
     platforms='',
     provides='ansible_parser',
+    install_requires=INSTALL_REQUIRES,
+    setup_requires=SETUP_REQUIRES,
     extras_require={'test': TEST_REQUIRES},
 )
