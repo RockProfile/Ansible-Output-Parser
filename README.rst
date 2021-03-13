@@ -21,4 +21,3 @@ Usage
     play = "" # populate with play output
     ansible = Play(play_output=play)
     failures = ansible.failures()
-
