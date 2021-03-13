@@ -1,5 +1,6 @@
-from setuptools import find_packages, setup
 from typing import List
+
+from setuptools import find_packages, setup
 
 PACKAGE_NAME = 'ansible-output-parser'
 PACKAGE_VERSION = '0.0.4'
@@ -11,11 +12,13 @@ INSTALL_REQUIRES: List[str] = []
 SETUP_REQUIRES: List[str] = []
 
 TEST_REQUIRES = [
-    'flake8',
-    'mypy',
-    'pytest',
-    'twine',
-    'wheel',
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+    "pytest",
+    "twine",
+    "wheel",
 ]
 
 

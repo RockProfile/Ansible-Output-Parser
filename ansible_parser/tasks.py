@@ -1,5 +1,4 @@
 import re
-
 from typing import Dict, List
 
 OK_STATUS_LIST = ['changed', 'ok', 'skipping']

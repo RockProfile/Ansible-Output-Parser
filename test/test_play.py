@@ -1,4 +1,5 @@
 import pytest
+
 from ansible_parser.play import Play
 
 
