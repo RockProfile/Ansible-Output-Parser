@@ -1,5 +1,4 @@
 import re
-
 from typing import Dict, List
 
 from ansible_parser.tasks import Tasks
