@@ -1,9 +1,9 @@
-name: Python package
+name: Linting And Testing
 
 on: [push]
 
 jobs:
-  test:
+  tox:
 
     runs-on: ubuntu-latest
     strategy:

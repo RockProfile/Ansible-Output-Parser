@@ -1,4 +1,4 @@
-name: Upload Python Package
+name: Publish
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - '*'
 
 jobs:
-  deploy:
+  pypi:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
