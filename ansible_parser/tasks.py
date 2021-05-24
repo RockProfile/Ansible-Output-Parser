@@ -34,7 +34,7 @@ class Tasks:
             task['status'] = task_details[0][0].lower()
             task['failure_message'] = task_details[0][2]
             if task['status'] not in self._task_list.keys():
-                self._task_list[task['status']] = list()
+                self._task_list[task['status']] = []
             self._task_list[task['status']].append(task)
 
     @property
@@ -53,10 +53,10 @@ class Tasks:
 
         :return: True f failed job identified.
         """
-        for task_result_status in self._task_list.keys():
-            if task_result_status not in OK_STATUS_LIST:
-                return True
-        return False
+        return any(
+            task_result_status not in OK_STATUS_LIST
+            for task_result_status in self._task_list.keys()
+        )
 
     @property
     def failures(self) -> Dict[str, Dict[str, List[Dict[str, str]]]]:
