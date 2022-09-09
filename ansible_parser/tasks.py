@@ -1,11 +1,11 @@
 import re
 from typing import Dict, List
 
-OK_STATUS_LIST = ['changed', 'ok', 'skipping']
+OK_STATUS_LIST = ["changed", "ok", "skipping"]
 
 
 class Tasks:
-    __slots__ = ['_name', '_task_list']
+    __slots__ = ["_name", "_task_list"]
 
     def __init__(self, tasks_info: str):
         """
@@ -22,20 +22,22 @@ class Tasks:
 
         :param tasks_info: Task block to be analysed.
         """
-        tasks_split = tasks_info.split('\n')
+        tasks_split = tasks_info.split("\n")
         try:
-            self._name = re.findall(r'(?:TASK(?: )+\[)(.+)(?:](?:[ *]+))', tasks_split[0], re.IGNORECASE)[0]
+            self._name = re.findall(
+                r"(?:TASK(?: )+\[)(.+)(?:](?:[ *]+))", tasks_split[0], re.IGNORECASE
+            )[0]
         except KeyError:
-            self._name = 'Unnamed'
+            self._name = "Unnamed"
         for task_info in tasks_split[1:]:
-            task = {}
-            task_details = re.findall(r'([a-z]+):[ ]+\[(.+)](?::[ ]+(.+))?', task_info, re.IGNORECASE)
-            task['host'] = task_details[0][1]
-            task['status'] = task_details[0][0].lower()
-            task['failure_message'] = task_details[0][2]
-            if task['status'] not in self._task_list.keys():
-                self._task_list[task['status']] = []
-            self._task_list[task['status']].append(task)
+            task_details = re.findall(
+                r"([a-z]+):[ ]+\[(.+)](?::[ ]+(.+))?", task_info, re.IGNORECASE
+            )
+            task = {"host": task_details[0][1], "status": task_details[0][0].lower()}
+            task["failure_message"] = task_details[0][2]
+            if task["status"] not in self._task_list.keys():
+                self._task_list[task["status"]] = []
+            self._task_list[task["status"]].append(task)
 
     @property
     def name(self) -> str:
