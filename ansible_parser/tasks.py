@@ -28,13 +28,11 @@ class Tasks:
         except KeyError:
             self._name = 'Unnamed'
         for task_info in tasks_split[1:]:
-            task = {}
             task_details = re.findall(r'([a-z]+):[ ]+\[([^]]+)](?::[ ]+(.+))?', task_info, re.IGNORECASE)
             if task_details == []:
                 print(f"WARNING: Failed parsing line '{task_info}'")
                 continue
-            task['host'] = task_details[0][1]
-            task['status'] = task_details[0][0].lower()
+            task = {'host': task_details[0][1], 'status': task_details[0][0].lower()}
             task['failure_message'] = task_details[0][2]
             if task['status'] not in self._task_list.keys():
                 self._task_list[task['status']] = []
