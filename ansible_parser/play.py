@@ -13,7 +13,7 @@ class Play:
 
         :param play_output: The output from Ansible after running commands.
         """
-        self._warnings: List[str] = list()
+        self._warnings: List[str] = []
         self._plays: Dict[str, Dict[str, Tasks]] = {}
         self._process_warnings(play_output)
         self._process_play(play_output)
