@@ -1,3 +1,4 @@
+import itertools
 import re
 from typing import Dict, List
 
@@ -72,3 +73,12 @@ class Tasks:
             if task_result_status in OK_STATUS_LIST:
                 del result[self.name][task_result_status]
         return result
+
+    @property
+    def results(self) -> List[Dict[str, str]]:
+        """
+        Fetches all the tasks.
+
+        :return: Tasks.
+        """
+        return list(itertools.chain(*self._task_list.values()))
