@@ -98,7 +98,7 @@ class Play:
                     failures[play] = self._plays[play][task].failures
         return failures
 
-    def plays(self) -> Dict[str, Dict[str, Dict[str, List[Dict[str, str]]]]]:
+    def plays(self) -> Dict[str, Dict[str, Tasks]]:
         """
         Fetches all plays.
 
