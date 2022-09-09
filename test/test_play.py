@@ -34,3 +34,36 @@ def test_warning(filename, expected):
         file_content = handler.read()
     play = Play(file_content)
     assert play._warnings == expected
+
+
+@pytest.mark.parametrize(
+    "filename,expected",
+    [
+        (
+            'failed_with_warning.txt',
+            1,
+        ),
+        (
+            'multiple_devices.txt',
+            1,
+        ),
+        (
+            'multiple_playbooks.txt',
+            2,
+        ),
+        (
+            'ok_with_warning.txt',
+            1,
+        ),
+        (
+            'simple.txt',
+            1,
+        ),
+    ],
+)
+def test_plays_count(filename, expected):
+    file_content = ''
+    with open(f'test/test_data/playbooks/{filename}', 'r') as handler:
+        file_content = handler.read()
+    play = Play(file_content)
+    assert len(play.plays()) == expected
