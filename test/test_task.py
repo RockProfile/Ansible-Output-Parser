@@ -40,3 +40,21 @@ def test_task_results_count(filename, expected_all, expected_failures):
 
     assert len(task.results) == expected_all
     assert len(task.failures) == expected_failures
+
+
+@pytest.mark.xfail
+@pytest.mark.parametrize(
+    "filename",
+    [
+        'task_with_command.txt',
+        'task_with_debug_msg.txt',
+        'task_with_debug_var.txt',
+    ],
+)
+def test_skipping_debug(filename):
+    with open(f'test/test_data/tasks/{filename}', 'r') as handler:
+        file_content = handler.read()
+    try:
+        _ = Tasks(file_content)
+    except IndexError as e:
+        pytest.fail(f'Failed with IndexError: {e}')

@@ -3,7 +3,7 @@ from typing import List
 from setuptools import find_packages, setup
 
 PACKAGE_NAME = "ansible-output-parser"
-PACKAGE_VERSION = "0.0.5"
+PACKAGE_VERSION = "0.0.6"
 DESCRIPTION = "Parser for Ansible output"
 with open("README.rst", "r") as fileHandler:
     LONG_DESCRIPTION = fileHandler.read()
