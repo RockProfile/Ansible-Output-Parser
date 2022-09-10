@@ -42,7 +42,6 @@ def test_task_results_count(filename, expected_all, expected_failures):
     assert len(task.failures) == expected_failures
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     "filename",
     [

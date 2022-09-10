@@ -1,0 +1,4 @@
+TASK [Greet with variable] *****************************************************
+ok: [localhost] => {
+    "greeting": "Hello world"
+}
