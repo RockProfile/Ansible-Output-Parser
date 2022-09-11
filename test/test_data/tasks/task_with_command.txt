@@ -1,0 +1,2 @@
+TASK [Greet via command] *******************************************************
+changed: [localhost]
