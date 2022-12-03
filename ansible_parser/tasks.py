@@ -32,7 +32,7 @@ class Tasks:
             self._name = "Unnamed"
         for task_info in tasks_split[1:]:
             task_details = re.findall(
-                r"([a-z]+):[ ]+\[([^]]+)](?::[ ]+(.+))?", task_info, re.IGNORECASE
+                r"([a-z]+):[ ]+\[([^\]]+)](?::[ ]+(.+))?", task_info, re.IGNORECASE
             )
             if task_details == []:
                 print(f"WARNING: Failed parsing line '{task_info}'")
