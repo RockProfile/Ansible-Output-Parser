@@ -1,3 +1,4 @@
+"""Module for parsing play information."""
 import re
 from typing import Dict, List
 
@@ -5,13 +6,16 @@ from ansible_parser.tasks import Tasks
 
 
 class Play:
+    """Class to handle parsing play information."""
+
     __slots__ = ["_plays", "_current_play", "_recap", "_warnings"]
 
     def __init__(self, play_output: str):
         """
         Init that will start the process of analysing the Ansible results.
 
-        :param play_output: The output from Ansible after running commands.
+        Args:
+             play_output: The output from Ansible after running commands.
         """
         self._warnings: List[str] = []
         self._plays: Dict[str, Dict[str, Tasks]] = {}
@@ -22,7 +26,7 @@ class Play:
         """
         Process any warnings showing in the output.
 
-        :param play_output:
+        :param play_output: Output from running a play
         """
         self._warnings = re.findall(r"\[WARNING]: (.+)", play_output, re.IGNORECASE)
 
@@ -35,20 +39,20 @@ class Play:
         items = play_output.split("\n\n")
         for item in items:
             item = item.strip()
-            if item.startswith("PLAY RECAP"):
+            if item.startswith("PLAY RECAP *"):
                 self._process_play_recap(item)
                 continue
-            if item.startswith("PLAY"):
+            if item.startswith("PLAY ["):
                 self._process_play_info(item)
                 continue
-            if item.startswith("TASK"):
+            if item.startswith("TASK ["):
                 tasks: Tasks = Tasks(item)
                 self._plays[self._current_play][tasks.name] = tasks
                 continue
 
     def _process_play_info(self, play_output: str):
         """
-        Obtains the name of the current play.
+        Obtain the name of the current play.
 
         :param play_output: Play detail line.
         """
@@ -59,7 +63,7 @@ class Play:
 
     def _process_play_recap(self, play_recap_output: str):
         """
-        Parses and stores the recap of the provided play. Only the last play recap is retained.
+        Parse and stores the recap of the provided play. Only the last play recap is retained.
 
         :param play_recap_output: The play recap text block.
         """
@@ -87,7 +91,7 @@ class Play:
 
     def failures(self) -> Dict[str, Dict[str, Dict[str, List[Dict[str, str]]]]]:
         """
-        Fetches all failures for the plays.
+        Fetch all failures for the plays.
 
         :return: Dictionary containing failures.
         """
@@ -100,7 +104,7 @@ class Play:
 
     def plays(self) -> Dict[str, Dict[str, Tasks]]:
         """
-        Fetches all plays.
+        Fetch all plays.
 
         :return: Dictionary containing plays.
         """

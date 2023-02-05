@@ -1,3 +1,4 @@
+"""Module for parsing task information."""
 import itertools
 import re
 from typing import Dict, List
@@ -6,6 +7,8 @@ OK_STATUS_LIST = ["changed", "ok", "skipping"]
 
 
 class Tasks:
+    """Class to handle parsing task information."""
+
     __slots__ = ["_name", "_task_list"]
 
     def __init__(self, tasks_info: str):
@@ -55,7 +58,7 @@ class Tasks:
     @property
     def has_failures(self) -> bool:
         """
-        Checks to see if any jobs failed
+        Check to see if any jobs failed.
 
         :return: True f failed job identified.
         """
@@ -67,7 +70,7 @@ class Tasks:
     @property
     def failures(self) -> Dict[str, Dict[str, List[Dict[str, str]]]]:
         """
-        Fetches the tasks that failed.
+        Fetch the tasks that failed.
 
         :return: Failed tasks identified.
         """
@@ -80,7 +83,7 @@ class Tasks:
     @property
     def results(self) -> List[Dict[str, str]]:
         """
-        Fetches all the tasks.
+        Fetch all the tasks.
 
         :return: Tasks.
         """

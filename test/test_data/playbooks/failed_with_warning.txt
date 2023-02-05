@@ -10,4 +10,3 @@ fatal: [127.0.0.1]: FAILED! => {"changed": false, "cmd": ["/usr/bin/git", "fetch
 
 PLAY RECAP *********************************************************************
 127.0.0.1                  : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
-
