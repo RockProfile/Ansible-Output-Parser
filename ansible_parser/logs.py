@@ -38,7 +38,7 @@ class Logs(object):
             for line in fh:
                 line_part = line.split(' | ')
                 if line_part[1].startswith('PLAY ['):
-                    date_raw = ' '.join(line_part[0].split(' ')[0:2])
+                    date_raw = ' '.join(line_part[0].split(' ')[:2])
                     if not self.date_of_interest(date=date_raw):
                         capture = False
                         current_play_data = ''
@@ -50,8 +50,8 @@ class Logs(object):
                     capture = True
                 elif capture:
                     if line_part[1].startswith('TASK [')\
-                            or line_part[1].startswith('PLAY RECAP *')\
-                            or line_part[1].startswith('ERROR!'):
+                                or line_part[1].startswith('PLAY RECAP *')\
+                                or line_part[1].startswith('ERROR!'):
                         current_play_data += '\n'
                     current_play_data += line_part[1]
             if current_play_data:
