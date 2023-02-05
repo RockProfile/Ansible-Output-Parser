@@ -1,3 +1,4 @@
+"""Collection of tests for Tasks."""
 import pytest
 
 from ansible_parser.tasks import Tasks
@@ -7,15 +8,21 @@ from ansible_parser.tasks import Tasks
     "filename,has_failures,task_name",
     [
         (
-            "task_with_fatal.txt",
+            "test/test_data/playbooks/task_with_fatal.txt",
             True,
             "Gathering Facts",
         ),
     ],
 )
 def test_task_info(filename, has_failures, task_name):
-    file_content = ""
-    with open(f"test/test_data/playbooks/{filename}", "r") as handler:
+    """
+    Test to ensure task information is correct.
+
+    :param filename: Path to playbook to test
+    :param has_failures: True if the playbook has failures
+    :param task_name: The expected name of the play
+    """
+    with open(filename, "r") as handler:
         file_content = handler.read()
     task = Tasks(file_content)
 
@@ -26,15 +33,21 @@ def test_task_info(filename, has_failures, task_name):
     "filename,expected_all,expected_failures",
     [
         (
-            'task_with_fatal.txt',
+            'test/test_data/playbooks/task_with_fatal.txt',
             8,
             1,
         ),
     ],
 )
 def test_task_results_count(filename, expected_all, expected_failures):
-    file_content = ''
-    with open(f'test/test_data/playbooks/{filename}', 'r') as handler:
+    """
+    Test to ensure task information is correct.
+
+    :param filename: Path to playbook to test
+    :param expected_all: The number of tasks expected
+    :param expected_failures: The number of failures expected
+    """
+    with open(filename, 'r') as handler:
         file_content = handler.read()
     task = Tasks(file_content)
 
@@ -45,13 +58,18 @@ def test_task_results_count(filename, expected_all, expected_failures):
 @pytest.mark.parametrize(
     "filename",
     [
-        'task_with_command.txt',
-        'task_with_debug_msg.txt',
-        'task_with_debug_var.txt',
+        'test/test_data/tasks/task_with_command.txt',
+        'test/test_data/tasks/task_with_debug_msg.txt',
+        'test/test_data/tasks/task_with_debug_var.txt',
     ],
 )
 def test_skipping_debug(filename):
-    with open(f'test/test_data/tasks/{filename}', 'r') as handler:
+    """
+    Test to ensure debug information is skipped.
+
+    :param filename: Path to playbook to test
+    """
+    with open(filename, 'r') as handler:
         file_content = handler.read()
     try:
         _ = Tasks(file_content)

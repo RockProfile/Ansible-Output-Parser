@@ -1,3 +1,4 @@
+"""Collection of tests for Plays."""
 import pytest
 
 from ansible_parser.play import Play
@@ -29,7 +30,7 @@ from ansible_parser.play import Play
     ],
 )
 def test_warning(filename, expected):
-    file_content = ""
+    """Test warnings are captured correctly."""
     with open(f"test/test_data/playbooks/{filename}", "r") as handler:
         file_content = handler.read()
     play = Play(file_content)
@@ -62,7 +63,7 @@ def test_warning(filename, expected):
     ],
 )
 def test_plays_count(filename, expected):
-    file_content = ''
+    """Test to ensure plays result in the correct number of tasks."""
     with open(f'test/test_data/playbooks/{filename}', 'r') as handler:
         file_content = handler.read()
     play = Play(file_content)
