@@ -60,6 +60,10 @@ def test_warning(filename, expected):
             'simple.txt',
             1,
         ),
+        (
+            "issue-31.txt",
+            1,
+        ),
     ],
 )
 def test_plays_count(filename, expected):
