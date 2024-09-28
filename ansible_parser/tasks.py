@@ -38,10 +38,15 @@ class Tasks:
         for task_info in tasks_split[1:]:
             if task_info.lower().startswith("async"):
                 async_data = re.match(
-                    r"async (?P<status>[a-z0-9)]+) on (?P<hostname>[^:]+): jid=(?P<jid>[0-9.]+)(?: started=(?P<started>[0-9]))?(?: finished=(?P<finished>[0-9]))?",
+                    (
+                        r"async (?P<status>[a-z0-9)]+) on (?P<hostname>[^:]+): jid=(?P<jid>[0-9.]+)"
+                        + r"(?: started=(?P<started>[0-9]))?(?: finished=(?P<finished>[0-9]))?"
+                    ),
                     task_info,
                     re.IGNORECASE
                 )
+                if not async_data:
+                    continue
                 if async_data.group("jid") not in async_data_items:
                     async_data_items[async_data.group("jid")] = []
                 async_data_item = {
@@ -53,7 +58,12 @@ class Tasks:
                 async_data_items[async_data.group("jid")].append(async_data_item)
                 continue
             task_details = re.findall(
-                r"(?P<status>[a-z]+):[ ]+\[(?P<hostname>[^\]]+)](?:(?:.)+\"ansible_job_id\": \"(?P<job_id>[0-9.]+)\")?(?::[ ]+(.+))?", task_info, re.IGNORECASE
+                (
+                    r"(?P<status>[a-z]+):[ ]+\[(?P<hostname>[^\]]+)]"
+                    + r"(?:(?:.)+\"ansible_job_id\": \"(?P<job_id>[0-9.]+)\")?(?::[ ]+(.+))?"
+                ),
+                task_info,
+                re.IGNORECASE,
             )
             if task_details == []:
                 print(f"WARNING: Failed parsing line '{task_info}'")
@@ -62,7 +72,7 @@ class Tasks:
                 "host": task_details[0][1],
                 "status": task_details[0][0].lower(),
                 "job_id": task_details[0][2] or None,
-                "async_info": async_data_items.get(task_details[0][2], None),
+                "async_info": async_data_items.get(task_details[0][2]),
             }
             if task_details[0][2] and task_details[0][2] in async_data_items:
                 task
