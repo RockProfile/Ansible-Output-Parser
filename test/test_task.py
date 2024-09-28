@@ -14,7 +14,7 @@ from ansible_parser.tasks import Tasks
         ),
     ],
 )
-def test_task_info(filename, has_failures, task_name):
+def test_task_info(filename: str, has_failures: bool, task_name: str):
     """
     Test to ensure task information is correct.
 
@@ -30,7 +30,7 @@ def test_task_info(filename, has_failures, task_name):
 
 
 @pytest.mark.parametrize(
-    "filename,expected_all,expected_failures",
+    "filename,expected_task_count,expected_failure_count",
     [
         (
             'test/test_data/playbooks/task_with_fatal.txt',
@@ -39,20 +39,20 @@ def test_task_info(filename, has_failures, task_name):
         ),
     ],
 )
-def test_task_results_count(filename, expected_all, expected_failures):
+def test_task_results_count(filename: str, expected_task_count: int, expected_failure_count: int):
     """
     Test to ensure task information is correct.
 
     :param filename: Path to playbook to test
-    :param expected_all: The number of tasks expected
-    :param expected_failures: The number of failures expected
+    :param expected_task_count: The number of tasks expected
+    :param expected_failure_count: The number of failures expected
     """
     with open(filename, 'r') as handler:
         file_content = handler.read()
     task = Tasks(file_content)
 
-    assert len(task.results) == expected_all
-    assert len(task.failures) == expected_failures
+    assert len(task.results) == expected_task_count
+    assert len(task.failures) == expected_failure_count
 
 
 @pytest.mark.parametrize(
@@ -63,7 +63,7 @@ def test_task_results_count(filename, expected_all, expected_failures):
         'test/test_data/tasks/task_with_debug_var.txt',
     ],
 )
-def test_skipping_debug(filename):
+def test_skipping_debug(filename: str):
     """
     Test to ensure debug information is skipped.
 

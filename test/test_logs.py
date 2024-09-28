@@ -1,5 +1,6 @@
 """Collection of tests for Logs."""
 from datetime import datetime
+from typing import Optional
 
 import pytest
 
@@ -35,14 +36,19 @@ from ansible_parser.logs import Logs
         ),
     ],
 )
-def test_logs(filename, start_from, expected_play_count, expected_last_play):
+def test_logs(
+        filename: str,
+        start_from: Optional[datetime],
+        expected_play_count: int,
+        expected_last_play: Optional[datetime]
+):
     """
     Test to ensure logs are parsed properly.
 
     :param filename: Path to log file to process
     :param start_from: datetime to fetch plays from
     :param expected_play_count: The number of plays expected
-    :param last_play_processed: The datetime expected to be the last record
+    :param expected_last_play: The datetime expected to be the last record
     """
     log_plays = Logs(log_file=filename, from_date=start_from)
 
