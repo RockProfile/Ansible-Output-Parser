@@ -65,7 +65,7 @@ class Tasks:
                 task_info,
                 re.IGNORECASE,
             )
-            if task_details == []:
+            if not task_details:
                 print(f"WARNING: Failed parsing line '{task_info}'")
                 continue
             task = {
@@ -74,8 +74,6 @@ class Tasks:
                 "job_id": task_details[0][2] or None,
                 "async_info": async_data_items.get(task_details[0][2]),
             }
-            if task_details[0][2] and task_details[0][2] in async_data_items:
-                task
             task["failure_message"] = task_details[0][3] or None
             if task["status"] not in self._task_list.keys():
                 self._task_list[task["status"]] = []
